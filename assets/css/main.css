@@ -93,6 +93,38 @@ h1 {
   color: var(--muted);
 }
 
+/* Idiomas */
+html:not(.lang-en) .en,
+html.lang-en .pt { display: none !important; }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.lang-switch button {
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--text);
+}
+
 .print-btn {
   flex-shrink: 0;
   padding: 8px 14px;
@@ -223,7 +255,7 @@ p { margin: 0; }
   }
   body { font-size: 12.5px; }
   .page { margin: 0; padding: 0; border: 0; max-width: none; }
-  .print-btn { display: none; }
+  .print-btn, .lang-switch { display: none; }
   section { margin-top: 18px; }
   .item, .courses li { break-inside: avoid; }
   h2 { break-after: avoid; }

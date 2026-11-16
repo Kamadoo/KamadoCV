@@ -18,6 +18,17 @@
   <link rel="preload" href="./assets/font/main.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <script>
+    // Idioma: ?lang=en na URL, ou a última escolha do visitante. Padrão: português.
+    (function () {
+      var lang = new URLSearchParams(location.search).get('lang');
+      if (lang !== 'en' && lang !== 'pt') {
+        try { lang = localStorage.getItem('cv-lang'); } catch (e) { lang = null; }
+      }
+      if (lang === 'en') document.documentElement.classList.add('lang-en');
+      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    })();
+  </script>
 </head>
 <body>
   <main class="page">
@@ -26,42 +37,64 @@
     <header class="header">
       <div>
         <h1>João Vitor Scudelari Marcolino Nunes</h1>
-        <p class="role">Desenvolvedor · Estudante de Análise e Desenvolvimento de Sistemas</p>
+        <p class="role">
+          <span class="pt">Desenvolvedor · Estudante de Análise e Desenvolvimento de Sistemas</span>
+          <span class="en">Developer · Systems Analysis and Development Student</span>
+        </p>
         <ul class="contact">
-          <li>São José dos Pinhais, PR</li>
+          <li><span class="pt">São José dos Pinhais, PR</span><span class="en">São José dos Pinhais, Brazil</span></li>
           <li><a href="mailto:jvmarcolino@hotmail.com">jvmarcolino@hotmail.com</a></li>
           <li><a href="https://github.com/Kamadoo" target="_blank" rel="noopener">github.com/Kamadoo</a></li>
-          <li><a href="https://www.linkedin.com/in/kamadoo/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/kamadoo/" target="_blank" rel="noopener">linkedin.com/in/kamadoo</a></li>
           <li><a href="https://x.com/kamadocoding" target="_blank" rel="noopener">X / Twitter</a></li>
         </ul>
       </div>
-      <button class="print-btn" type="button" onclick="window.print()">Baixar PDF</button>
+      <div class="actions">
+        <div class="lang-switch" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="pt">PT</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <button class="print-btn" type="button" onclick="window.print()">
+          <span class="pt">Baixar PDF</span><span class="en">Download PDF</span>
+        </button>
+      </div>
     </header>
 
     <!-- Resumo -->
     <section>
-      <h2>Resumo</h2>
-      <p>
+      <h2><span class="pt">Resumo</span><span class="en">Summary</span></h2>
+      <p class="pt">
         Desenvolvedor na Arlequim e estudante de Análise e Desenvolvimento de Sistemas na PUCPR, mexendo com
         computadores desde os 14 anos. Desenvolvo sites e aplicativos, incluindo um sistema web completo com banco de
         dados PostgreSQL, testes automatizados e integração contínua que hoje apoia o atendimento às escolas públicas
         de Nova Lima. Inglês avançado e muita vontade de aprender e crescer na área de desenvolvimento.
       </p>
+      <p class="en">
+        Developer at Arlequim and Systems Analysis and Development student at PUCPR, into computers since I was 14.
+        I build websites and apps, including a complete web system with a PostgreSQL database, automated tests and
+        continuous integration that now supports the public schools of Nova Lima, Brazil. Advanced English and a
+        strong drive to keep learning and growing as a developer.
+      </p>
     </section>
 
     <!-- Experiência -->
     <section>
-      <h2>Experiência profissional</h2>
+      <h2><span class="pt">Experiência profissional</span><span class="en">Experience</span></h2>
 
       <article class="item">
         <div class="item-head">
-          <h3>Desenvolvedor · <a href="https://www.arlequim.com/" target="_blank" rel="noopener">Arlequim</a></h3>
-          <span class="meta">Atual · Remoto</span>
+          <h3><span class="pt">Desenvolvedor</span><span class="en">Developer</span> · <a href="https://www.arlequim.com/" target="_blank" rel="noopener">Arlequim</a></h3>
+          <span class="meta"><span class="pt">Atual · Remoto</span><span class="en">Current · Remote</span></span>
         </div>
-        <ul>
+        <ul class="pt">
           <li>Desenvolvimento de sites e aplicativos.</li>
           <li>Criação do <strong>Oficineiro+</strong>, aplicativo auxiliar que melhorou o fluxo de atendimento às escolas públicas de Nova Lima (veja em Projetos).</li>
           <li>Criação de mundos educacionais no Minecraft Education.</li>
+        </ul>
+        <ul class="en">
+          <li>Building websites and apps.</li>
+          <li>Created <strong>Oficineiro+</strong>, a support app that improved how the public schools of Nova Lima are served (see Projects).</li>
+          <li>Designing educational worlds in Minecraft Education.</li>
         </ul>
         <ul class="tags">
           <li>VS Code</li><li>React</li><li>PostgreSQL</li><li>Minecraft Education</li>
@@ -71,21 +104,30 @@
 
     <!-- Projetos -->
     <section>
-      <h2>Projetos</h2>
+      <h2><span class="pt">Projetos</span><span class="en">Projects</span></h2>
 
       <article class="item">
         <div class="item-head">
           <h3><a href="https://github.com/Kamadoo/oficineiro-mais" target="_blank" rel="noopener">Oficineiro+</a></h3>
           <span class="meta">Arlequim · Nova Lima</span>
         </div>
-        <p>
+        <p class="pt">
           Sistema web para gestão das oficinas de tecnologia educacional nas escolas da rede municipal:
           presença com conferência de localização, grade de aulas, registro de atividades, relatório mensal
           e visitas de campo, com permissões diferentes para cada perfil de usuário.
         </p>
-        <ul>
+        <p class="en">
+          Web app for managing the educational technology workshops in a city's public schools: attendance with
+          location check-in, class schedules, activity logs, monthly reports and field visits, with different
+          permissions for each user role.
+        </p>
+        <ul class="pt">
           <li>Regras de negócio e de acesso no banco, com Row Level Security em todas as tabelas e auditoria das operações sensíveis.</li>
           <li>Testes de banco (pgTAP), testes de interface com Playwright e checagem de acessibilidade, rodando em CI no GitHub Actions.</li>
+        </ul>
+        <ul class="en">
+          <li>Business and access rules live in the database, with Row Level Security on every table and auditing of sensitive operations.</li>
+          <li>Database tests (pgTAP), UI tests with Playwright and accessibility checks, running in CI on GitHub Actions.</li>
         </ul>
         <ul class="tags">
           <li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>Supabase</li><li>Playwright</li><li>GitHub Actions</li>
@@ -94,55 +136,68 @@
 
       <article class="item">
         <div class="item-head">
-          <h3><a href="https://github.com/Kamadoo/DiscordBot" target="_blank" rel="noopener">Bot para Discord</a></h3>
+          <h3><a href="https://github.com/Kamadoo/DiscordBot" target="_blank" rel="noopener"><span class="pt">Bot para Discord</span><span class="en">Discord bot</span></a></h3>
         </div>
-        <p>Bot que consulta uma API para mostrar os eventos ativos do jogo Arc Raiders, além de comandos de diversão para o servidor.</p>
-        <ul class="tags"><li>JavaScript</li><li>Node.js</li><li>APIs REST</li></ul>
+        <p class="pt">Mostra os eventos ativos e os próximos do jogo Arc Raiders por mapa, consumindo a API do MetaForge, com slash commands e comandos de diversão para o servidor.</p>
+        <p class="en">Shows the active and upcoming Arc Raiders events per map using the MetaForge API, with slash commands and fun commands for the server.</p>
+        <ul class="tags"><li>JavaScript</li><li>Node.js</li><li>discord.js</li><li>APIs REST</li></ul>
       </article>
 
       <article class="item">
         <div class="item-head">
-          <h3><a href="https://github.com/Kamadoo/py" target="_blank" rel="noopener">Sistema CRUD em Python</a></h3>
+          <h3><a href="https://github.com/Kamadoo/py" target="_blank" rel="noopener"><span class="pt">Sistema acadêmico em Python</span><span class="en">Academic system in Python</span></a></h3>
+          <span class="meta">PUCPR</span>
         </div>
-        <p>Cadastro com as operações de criar, listar, atualizar e excluir registros.</p>
-        <ul class="tags"><li>Python</li></ul>
+        <p class="pt">Sistema de linha de comando para gestão acadêmica, feito como atividade da faculdade: menu principal e cadastro de estudantes.</p>
+        <p class="en">Command-line academic management system built as a course assignment: main menu and student registration.</p>
+        <ul class="tags"><li>Python</li><li>CLI</li></ul>
       </article>
 
       <article class="item">
         <div class="item-head">
-          <h3><a href="https://github.com/Kamadoo/Survey" target="_blank" rel="noopener">Pesquisa de levantamento</a></h3>
+          <h3><a href="https://github.com/Kamadoo/Survey" target="_blank" rel="noopener"><span class="pt">Formulário de pesquisa</span><span class="en">Survey form</span></a></h3>
         </div>
-        <p>Formulário web para coleta de informações.</p>
+        <p class="pt">Formulário de pesquisa responsivo, com validação nativa do navegador.</p>
+        <p class="en">Responsive survey form with native browser validation.</p>
         <ul class="tags"><li>HTML</li><li>CSS</li></ul>
       </article>
 
       <article class="item">
         <div class="item-head">
-          <h3>Outros</h3>
+          <h3><span class="pt">Outros</span><span class="en">Other</span></h3>
         </div>
-        <ul>
+        <ul class="pt">
           <li>Sistema de login e cadastro em React.</li>
           <li>Este currículo, feito em HTML e CSS e publicado no <a href="https://github.com/Kamadoo/KamadoCV" target="_blank" rel="noopener">GitHub Pages</a>.</li>
           <li><em>Em desenvolvimento:</em> rede social simples e uma API com front-end próprio.</li>
+        </ul>
+        <ul class="en">
+          <li>Sign-up and login system in React.</li>
+          <li>This resume, built in HTML and CSS and published on <a href="https://github.com/Kamadoo/KamadoCV" target="_blank" rel="noopener">GitHub Pages</a>.</li>
+          <li><em>In progress:</em> a simple social network and an API with its own front end.</li>
         </ul>
       </article>
     </section>
 
     <!-- Formação -->
     <section>
-      <h2>Formação</h2>
+      <h2><span class="pt">Formação</span><span class="en">Education</span></h2>
 
       <article class="item with-logo">
         <img src="./assets/images/pucpr.png" alt="" width="32" height="32">
         <div>
           <div class="item-head">
-            <h3><a href="https://ead.pucpr.br/graduacao-ead/analise-e-desenvolvimento-de-sistemas" target="_blank" rel="noopener">Análise e Desenvolvimento de Sistemas</a></h3>
-            <span class="meta">Em andamento · EAD</span>
+            <h3><a href="https://ead.pucpr.br/graduacao-ead/analise-e-desenvolvimento-de-sistemas" target="_blank" rel="noopener"><span class="pt">Análise e Desenvolvimento de Sistemas</span><span class="en">Systems Analysis and Development</span></a></h3>
+            <span class="meta"><span class="pt">Em andamento · EAD</span><span class="en">In progress · Online</span></span>
           </div>
-          <p class="sub">PUCPR · Tecnólogo (2,5 anos)</p>
-          <ul>
+          <p class="sub"><span class="pt">PUCPR · Tecnólogo (2,5 anos)</span><span class="en">PUCPR · Associate degree (2.5 years)</span></p>
+          <ul class="pt">
             <li>Fundamentos de programação, arquitetura de software, banco de dados e SQL.</li>
             <li>Desenvolvimento com Python e Java, padrão MVC e versionamento com Git/GitHub.</li>
+          </ul>
+          <ul class="en">
+            <li>Programming fundamentals, software architecture, databases and SQL.</li>
+            <li>Development with Python and Java, the MVC pattern and version control with Git/GitHub.</li>
           </ul>
         </div>
       </article>
@@ -151,8 +206,8 @@
         <img src="./assets/images/ideal.png" alt="" width="32" height="32">
         <div>
           <div class="item-head">
-            <h3>Ensino Médio</h3>
-            <span class="meta">Concluído em 2020</span>
+            <h3><span class="pt">Ensino Médio</span><span class="en">High School</span></h3>
+            <span class="meta"><span class="pt">Concluído em 2020</span><span class="en">Completed in 2020</span></span>
           </div>
           <p class="sub"><a href="https://www.colegioidealsbo.com.br/" target="_blank" rel="noopener">Colégio Ideal</a></p>
         </div>
@@ -161,48 +216,70 @@
 
     <!-- Cursos -->
     <section>
-      <h2>Cursos complementares</h2>
+      <h2><span class="pt">Cursos complementares</span><span class="en">Courses</span></h2>
       <ul class="courses">
         <li>
           <img src="./assets/images/CNA.png" alt="" width="24" height="24">
-          <span><strong>Inglês</strong> · CNA</span>
-          <span class="meta">3 anos · Presencial</span>
+          <span><strong><span class="pt">Inglês</span><span class="en">English</span></strong> · CNA</span>
+          <span class="meta"><span class="pt">3 anos · Presencial</span><span class="en">3 years · In person</span></span>
         </li>
         <li>
           <img src="./assets/images/codeacademy.png" alt="" width="24" height="24">
-          <span><strong>Desenvolvimento web e Python</strong> · Codecademy</span>
-          <span class="meta">6 meses · Online</span>
+          <span><strong><span class="pt">Desenvolvimento web e Python</span><span class="en">Web development and Python</span></strong> · Codecademy</span>
+          <span class="meta"><span class="pt">6 meses · Online</span><span class="en">6 months · Online</span></span>
         </li>
         <li>
           <img src="./assets/images/freecodecamp.png" alt="" width="24" height="24">
-          <span><strong>Desenvolvimento web</strong> · freeCodeCamp</span>
-          <span class="meta">3 meses · Online</span>
+          <span><strong><span class="pt">Desenvolvimento web</span><span class="en">Web development</span></strong> · freeCodeCamp</span>
+          <span class="meta"><span class="pt">3 meses · Online</span><span class="en">3 months · Online</span></span>
         </li>
         <li>
           <img src="./assets/images/udemy.png" alt="" width="24" height="24">
-          <span><strong>Desenvolvimento web, Python e Java</strong> · Udemy</span>
-          <span class="meta">2 meses · Online</span>
+          <span><strong><span class="pt">Desenvolvimento web, Python e Java</span><span class="en">Web development, Python and Java</span></strong> · Udemy</span>
+          <span class="meta"><span class="pt">2 meses · Online</span><span class="en">2 months · Online</span></span>
         </li>
       </ul>
     </section>
 
     <!-- Habilidades -->
     <section>
-      <h2>Habilidades</h2>
+      <h2><span class="pt">Habilidades</span><span class="en">Skills</span></h2>
       <dl class="skills">
-        <dt>Linguagens</dt>
+        <dt><span class="pt">Linguagens</span><span class="en">Programming</span></dt>
         <dd><ul class="tags"><li>Python</li><li>Java</li><li>JavaScript</li><li>TypeScript</li><li>SQL</li><li>HTML</li><li>CSS</li></ul></dd>
-        <dt>Ferramentas</dt>
-        <dd><ul class="tags"><li>React</li><li>PostgreSQL</li><li>Supabase</li><li>Git e GitHub</li><li>Padrão MVC</li></ul></dd>
-        <dt>Sistemas</dt>
-        <dd><ul class="tags"><li>Windows (avançado)</li><li>Linux Ubuntu (básico)</li></ul></dd>
-        <dt>Outros</dt>
-        <dd><ul class="tags"><li>Pacote Office</li><li>Adobe Photoshop</li><li>Sony Vegas</li></ul></dd>
-        <dt>Idiomas</dt>
-        <dd><ul class="tags"><li>Português (nativo)</li><li>Inglês (avançado)</li></ul></dd>
+        <dt><span class="pt">Ferramentas</span><span class="en">Tools</span></dt>
+        <dd><ul class="tags"><li>React</li><li>PostgreSQL</li><li>Supabase</li><li><span class="pt">Git e GitHub</span><span class="en">Git and GitHub</span></li><li><span class="pt">Padrão MVC</span><span class="en">MVC pattern</span></li></ul></dd>
+        <dt><span class="pt">Sistemas</span><span class="en">Systems</span></dt>
+        <dd><ul class="tags"><li><span class="pt">Windows (avançado)</span><span class="en">Windows (advanced)</span></li><li><span class="pt">Linux Ubuntu (básico)</span><span class="en">Linux Ubuntu (basic)</span></li></ul></dd>
+        <dt><span class="pt">Outros</span><span class="en">Other</span></dt>
+        <dd><ul class="tags"><li><span class="pt">Pacote Office</span><span class="en">Microsoft Office</span></li><li>Adobe Photoshop</li><li>Sony Vegas</li></ul></dd>
+        <dt><span class="pt">Idiomas</span><span class="en">Languages</span></dt>
+        <dd><ul class="tags"><li><span class="pt">Português (nativo)</span><span class="en">Portuguese (native)</span></li><li><span class="pt">Inglês (avançado)</span><span class="en">English (advanced)</span></li></ul></dd>
       </dl>
     </section>
 
   </main>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var titles = { pt: 'João Vitor Scudelari Marcolino Nunes · Currículo', en: 'João Vitor Scudelari Marcolino Nunes · Resume' };
+      function apply(lang) {
+        root.classList.toggle('lang-en', lang === 'en');
+        root.lang = lang === 'en' ? 'en' : 'pt-BR';
+        document.title = titles[lang];
+        document.querySelectorAll('.lang-switch button').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+        });
+      }
+      apply(root.classList.contains('lang-en') ? 'en' : 'pt');
+      document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          apply(b.dataset.lang);
+          try { localStorage.setItem('cv-lang', b.dataset.lang); } catch (e) {}
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
